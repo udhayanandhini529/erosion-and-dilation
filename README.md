@@ -56,12 +56,63 @@ Create a structuring element (kernel) of suitable size.
 Compare the original, eroded, and dilated images.
 
 ## Program
+Import the necessary packages:
+
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+image = np.zeros((500, 500, 3), dtype="uint8")
+```
+
+Create the Text using cv2.putText:
+
+```
+text = "DIGITAL IMAGE"
+font = cv2.FONT_HERSHEY_SIMPLEX
+cv2.putText(image, text, (50, 150), font, 2, (255, 255, 255), 3)
+```
+
+Create the structuring element:
+
+```
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+```
+
+Original image:
+
+```
+image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+plt.imshow(image_rgb)
+plt.title("Original Image")
+plt.axis("off")
+```
+
+Erode the image:
+
+```
+eroded_image = cv2.erode(image, kernel, iterations=1)
+eroded_image_rgb = cv2.cvtColor(eroded_image, cv2.COLOR_BGR2RGB)
+plt.imshow(eroded_image_rgb)
+plt.title("Eroded Image")
+plt.axis("off")
+```
+
+Dilate the image:
+
+```
+dilated_image = cv2.dilate(image, kernel, iterations=1)
+dilated_image_rgb = cv2.cvtColor(dilated_image, cv2.COLOR_BGR2RGB)
+plt.imshow(dilated_image_rgb)
+plt.title("Dilated Image")
+plt.axis("off")
+```
 
 ## Developed By
 
-**Name:** ____________________________
+**Name:** Udhaya Nandhini M
 
-**Register No:** ______________________
+**Register No:** 212225240177
 
 ## Output
 
@@ -69,6 +120,7 @@ Compare the original, eroded, and dilated images.
 
 - A text image containing characters is displayed.
 - The image serves as the input for morphological processing.
+![alt text](image.png)
 
 ### Erosion
 
@@ -76,6 +128,7 @@ Compare the original, eroded, and dilated images.
 - Eroded image is displayed.
 - The thickness of the characters is reduced.
 - Object boundaries shrink inward.
+![alt text](image-1.png)
 
 ### Dilation
 
@@ -83,6 +136,7 @@ Compare the original, eroded, and dilated images.
 - Dilated image is displayed.
 - The thickness of the characters increases.
 - Object boundaries expand outward.
+![alt text](image-2.png)
 
 ## Result
 
